@@ -1,0 +1,8 @@
+Sopraan 1: 262 noten, bereik A#3-F5, buiten bereik: 2 [(3, 'A#3'), (55, 'A#3')]
+Sopraan 2: 99 noten, bereik G3-D5, buiten bereik: 1 [(25, 'G3')]
+Alt: 64 noten, bereik F3-C5, buiten bereik: 0 []
+Viool: 24 noten, bereik C4-D5, buiten bereik: 0 []
+Cello: 25 noten, bereik C2-A#3, buiten bereik: 0 []
+Tekst: 226 woorden in origineel, 202 automatisch teruggevonden in de zang, 283 lettergrepen geplaatst in de melodiestem
+Maten: 59; tempoaanduidingen: 9; percussie-accenten: 5; harpakkoorden: 58
+Melodie per frase: m2:S1, m6:A, m11:S1, m29:S1, m30:S1, m32:S1, m42:S1

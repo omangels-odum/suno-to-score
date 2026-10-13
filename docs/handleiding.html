@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<title>Van Suno-stuk naar partituur</title>
+<style>
+@page { size: A4; margin: 16mm 15mm 16mm 15mm; }
+:root{
+  --ink:#1d1b26; --muted:#5d5a6b; --line:#e3e0ea; --bg:#ffffff; --soft:#f6f4f9;
+  --plum:#5b2a6e; --plum-soft:#efe6f3;
+  --reb:#b4532a; --reb-soft:#fbede5;    /* Rebekka */
+  --kla:#1f7a78; --kla-soft:#e3f3f2;    /* Klangio */
+  --cla:#3b4fa8; --cla-soft:#e8ebf8;    /* Claude */
+  --mus:#6b6b24; --mus-soft:#f1f1dc;    /* Musici */
+}
+*{box-sizing:border-box}
+body{font-family:Inter, "DejaVu Sans", sans-serif; color:var(--ink); background:var(--bg); font-size:10.6pt; line-height:1.5; margin:0}
+h1{font-size:27pt; line-height:1.12; margin:0 0 8pt; letter-spacing:-0.5px; color:var(--plum)}
+h2{font-size:16pt; margin:0 0 6pt; color:var(--plum); letter-spacing:-0.2px}
+h3{font-size:11.5pt; margin:12pt 0 4pt}
+p{margin:0 0 7pt}
+ul,ol{margin:0 0 8pt; padding-left:16pt}
+li{margin:0 0 3pt}
+.page{page-break-after:always}
+.page:last-child{page-break-after:auto}
+.kicker{font-size:8.5pt; font-weight:700; text-transform:uppercase; letter-spacing:1.4px; color:var(--muted); margin-bottom:4pt}
+.lead{font-size:12pt; color:var(--muted); margin-bottom:12pt}
+.box{background:var(--soft); border-radius:8pt; padding:9pt 11pt; margin:8pt 0}
+.tip{border-left:3pt solid var(--plum); background:var(--plum-soft); border-radius:0 8pt 8pt 0; padding:8pt 11pt; margin:8pt 0}
+.warn{border-left:3pt solid var(--reb); background:var(--reb-soft); border-radius:0 8pt 8pt 0; padding:8pt 11pt; margin:8pt 0}
+.chip{display:inline-block; font-size:8pt; font-weight:700; padding:1.5pt 7pt; border-radius:20pt; vertical-align:middle; margin-right:4pt}
+.c-reb{background:var(--reb-soft); color:var(--reb)} .c-kla{background:var(--kla-soft); color:var(--kla)}
+.c-cla{background:var(--cla-soft); color:var(--cla)} .c-mus{background:var(--mus-soft); color:var(--mus)}
+table{border-collapse:collapse; width:100%; margin:6pt 0 10pt; font-size:9.8pt}
+th,td{text-align:left; padding:5pt 7pt; border-bottom:1px solid var(--line); vertical-align:top}
+th{font-size:8.5pt; text-transform:uppercase; letter-spacing:0.8px; color:var(--muted)}
+td.k{font-weight:600; white-space:nowrap}
+figure{margin:8pt 0 10pt; text-align:center}
+figure img{max-width:100%; border-radius:6pt; border:1px solid var(--line)}
+figcaption{font-size:8.5pt; color:var(--muted); margin-top:3pt}
+.two{display:flex; gap:12pt} .two > div{flex:1}
+.cover{height:255mm; display:flex; flex-direction:column; justify-content:space-between}
+.cover .stave{height:44pt; background:repeating-linear-gradient(to bottom, var(--plum) 0 1.2pt, transparent 1.2pt 9pt); opacity:.18; margin:18pt 0}
+.cover .meta{font-size:9.5pt; color:var(--muted)}
+.toc li{margin-bottom:4pt}
+/* flow */
+.legend{margin:2pt 0 10pt}
+.flow{display:flex; flex-direction:column; gap:0}
+.step{display:flex; gap:10pt; align-items:stretch}
+.step .num{flex:0 0 26pt; display:flex; flex-direction:column; align-items:center}
+.step .dot{width:24pt; height:24pt; border-radius:50%; color:#fff; font-weight:800; display:flex; align-items:center; justify-content:center; font-size:11pt}
+.step .rail{flex:1; width:2pt; background:var(--line); margin:2pt 0}
+.step:last-child .rail{display:none}
+.step .card{flex:1; border:1px solid var(--line); border-radius:8pt; padding:7pt 10pt; margin-bottom:8pt}
+.step .card b.t{font-size:11pt}
+.step .card .out{font-size:8.8pt; color:var(--muted); margin-top:2pt}
+.d-reb{background:var(--reb)} .d-kla{background:var(--kla)} .d-cla{background:var(--cla)} .d-mus{background:var(--mus)}
+.check li{list-style:none; margin-left:-14pt}
+.check li:before{content:"☐  "; font-weight:700; color:var(--plum)}
+.small{font-size:9pt; color:var(--muted)}
+code{font-family:"DejaVu Sans Mono", monospace; font-size:9pt; background:var(--soft); padding:0 3pt; border-radius:3pt}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="page cover">
+  <div>
+    <div class="kicker">Handleiding · versie 1.1 · 13 oktober 2026</div>
+    <h1>Van Suno-stuk<br>naar partituur</h1>
+    <p class="lead">Hoe een stuk dat je in Suno maakte, een echte partituur wordt die zangeressen en muzikanten live kunnen uitvoeren. Stap voor stap, met de instellingen die we bij <i>Ce qu'il reste entre nous</i> uitprobeerden.</p>
+    <div class="stave"></div>
+    <h3>Wat staat erin</h3>
+    <ol class="toc">
+      <li>Het grote plaatje: alle stappen in één schema</li>
+      <li>Componeren in Suno, zo dat de partituur later beter wordt</li>
+      <li>Exporteren uit Suno</li>
+      <li>Noten maken met Klangio</li>
+      <li>Wat Claude daarna doet, en wat je aanlevert</li>
+      <li>Controleren, repeteren en uitvoeren</li>
+      <li>Rechten: Suno en SABAM</li>
+      <li>Verder werken met AI (de zip)</li>
+      <li>Spiekbriefje</li>
+      <li>Waar dit eerste stuk nu staat</li>
+    </ol>
+  </div>
+  <div class="box">
+    <b>Bij deze PDF hoort een zip-bestand.</b> Daarin staat alles wat een AI (Claude, of eventueel ChatGPT) nodig heeft om verder te werken: een briefing, de werknotities, de scripts en de testresultaten. Hoe je die gebruikt, lees je in hoofdstuk 8.
+  </div>
+  <div class="meta">Opgesteld door Olivier met Claude.</div>
+</section>
+
+<!-- 1 FLOW -->
+<section class="page">
+  <div class="kicker">Hoofdstuk 1</div>
+  <h2>Het grote plaatje</h2>
+  <p>Een partituur ontstaat in zes stappen. Elke stap heeft een eigenaar. De kleur toont wie wat doet.</p>
+  <div class="legend">
+    <span class="chip c-reb">Rebekka</span><span class="chip c-kla">Klangio</span><span class="chip c-cla">Claude</span><span class="chip c-mus">Musici &amp; dirigent</span>
+  </div>
+  <div class="flow">
+    <div class="step"><div class="num"><div class="dot d-reb">1</div><div class="rail"></div></div>
+      <div class="card"><span class="chip c-reb">Rebekka</span><b class="t">Componeren in Suno</b><br>Het stuk maken, liefst in Suno Studio met eigen noten (MIDI) als vertrekpunt.
+      <div class="out">Resultaat: een afgewerkt nummer + de tekst + de prompts</div></div></div>
+    <div class="step"><div class="num"><div class="dot d-reb">2</div><div class="rail"></div></div>
+      <div class="card"><span class="chip c-reb">Rebekka</span><b class="t">Exporteren uit Suno</b><br>Het nummer opsplitsen in sporen (Advanced split) en alles als WAV downloaden.
+      <div class="out">Resultaat: één zip met het volledige nummer + een WAV per stem/instrument</div></div></div>
+    <div class="step"><div class="num"><div class="dot d-kla">3</div><div class="rail"></div></div>
+      <div class="card"><span class="chip c-kla">Klangio</span><b class="t">Audio omzetten naar noten</b><br>Elk spoor apart laten uitschrijven: zang, piano, eventueel strijkers.
+      <div class="out">Resultaat: per spoor een MusicXML- en MIDI-bestand</div></div></div>
+    <div class="step"><div class="num"><div class="dot d-cla">4</div><div class="rail"></div></div>
+      <div class="card"><span class="chip c-cla">Claude</span><b class="t">Samenvoegen, verbeteren, arrangeren</b><br>Eén gemeenschappelijk maatraster, fouten eruit, originele tekst erin, zangpartijen S1/S2/A, de instrumenten verdelen (piano, harp, viool, cello, percussie), alles controleren.
+      <div class="out">Resultaat: volledige partituur, partijen per muzikant (PDF), MusicXML, playback</div></div></div>
+    <div class="step"><div class="num"><div class="dot d-reb">5</div><div class="rail"></div></div>
+      <div class="card"><span class="chip c-reb">Rebekka</span><span class="chip c-mus">Dirigent</span><b class="t">Beluisteren en beslissen</b><br>De playback naast het origineel leggen. Klopt het? Welk instrument draagt welke melodie? Aanpassingen gaan terug naar stap 4.
+      <div class="out">Resultaat: een goedgekeurde versie</div></div></div>
+    <div class="step"><div class="num"><div class="dot d-mus">6</div><div class="rail"></div></div>
+      <div class="card"><span class="chip c-mus">Musici</span><b class="t">Nalezen, repeteren, uitvoeren</b><br>Een musicus die niet aan de partituur werkte, leest na. De zangeressen krijgen per stem een repetitie-MP3.
+      <div class="out">Resultaat: concertklare partijen</div></div></div>
+  </div>
+  <div class="tip"><b>De kern in één zin:</b> Suno levert de klank, Klangio de ruwe noten, Claude maakt er een partituur van, en mensen beslissen of het klopt.</div>
+</section>
+
+<!-- 2 COMPOSE -->
+<section class="page">
+  <div class="kicker">Hoofdstuk 2 · <span class="chip c-reb">Rebekka</span></div>
+  <h2>Componeren in Suno</h2>
+  <p>Hoe je in Suno werkt, bepaalt hoe goed de partituur later wordt. Suno maakt audio, geen noten. Alles wat later "uit de audio geraden" moet worden, is een bron van fouten.</p>
+
+  <h3>Pro of Premier: wat is het verschil voor jou?</h3>
+  <table>
+    <tr><th></th><th>Pro</th><th>Premier (met Studio)</th></tr>
+    <tr><td class="k">Werkwijze</td><td>Prompt geven, kiezen uit wat Suno maakt</td><td>Zelf meecomponeren op een tijdlijn met sporen</td></tr>
+    <tr><td class="k">Per deel herwerken</td><td>Beperkt</td><td>Alleen het middenstuk opnieuw laten maken</td></tr>
+    <tr><td class="k">Lagen toevoegen</td><td>Nee</td><td>Bv. cello of harp onder een a-cappellastuk</td></tr>
+    <tr><td class="k">Eigen noten (MIDI)</td><td>Nee</td><td>Melodie of akkoorden zelf ingeven of inspelen</td></tr>
+    <tr><td class="k">Opsplitsen</td><td>Auto split, Split from mix</td><td>+ Advanced split (zelf kiezen uit ~100 instrumenten)</td></tr>
+    <tr><td class="k">MIDI-export</td><td>Nee</td><td>Ja, voor instrumenten (niet voor zang)</td></tr>
+  </table>
+
+  <h3>Tips voor een stuk dat uitgevoerd moet worden</h3>
+  <ul>
+    <li><b>Begin met je eigen noten.</b> Geef de melodie en de belangrijkste harmonieën zelf in als MIDI in Studio. Die noten bestaan dan al exact en hoeven later niet geraden te worden. Dat is de grootste kwaliteitswinst die er is.</li>
+    <li><b>Denk aan de echte bezetting.</b> Vraag in je prompt om de instrumenten die je live zult hebben (bv. "piano, harp, violin, cello, light percussion, six female voices"). Wat Suno niet laat horen, moet later bedacht worden.</li>
+    <li><b>Hou de stemmen zingbaar.</b> Vraag om duidelijke, afzonderlijke stemlijnen ("clear independent voice lines") in plaats van een vage koorklank.</li>
+    <li><b>Bewaar alles:</b> de definitieve tekst, de prompts, de datum. Je hebt de tekst nodig voor de partituur, en de rest voor de rechten (hoofdstuk 7).</li>
+    <li><b>Een vast tempo maakt het makkelijker</b>, maar is geen must. Vrije tempo's en tempowissels lukken ook, het kost alleen meer werk.</li>
+  </ul>
+  <div class="tip"><b>Nuance:</b> componeer je een nieuw stuk in Studio door zelf noten in te geven, dan is Klangio (stap 3) voor die delen overbodig. Klangio is vooral nodig voor stukken die alleen als audio bestaan.</div>
+</section>
+
+<!-- 3 EXPORT -->
+<section class="page">
+  <div class="kicker">Hoofdstuk 3 · <span class="chip c-reb">Rebekka</span></div>
+  <h2>Exporteren uit Suno</h2>
+  <p>Het doel: elk instrument en de zang als apart, onverkleind audiobestand.</p>
+  <ol>
+    <li>Open het nummer in <b>Suno Studio</b>. Klik met de rechtermuisknop op de clip en kies <b>Get Stems</b>.</li>
+    <li>Kies <b>Advanced split</b> (Premier) en vink aan wat je hoort: zang/koor, piano, harp, viool, cello, percussie. Elke stem kost 10 credits. Met Pro kies je <b>Auto split</b> (50 credits).</li>
+    <li>Klik <b>Extract</b> één keer. Is de split al gebeurd, klik dan niet opnieuw op Extract: dat kost opnieuw credits en levert niets extra op.</li>
+    <li>Zet <b>Match project tempo</b> uit.</li>
+    <li>Klik <b>Download</b>, vink <b>WAV</b> én <b>MIDI</b> aan (MP3 mag uit) en kies <b>Follow tempo changes</b> (niet Fixed tempo).</li>
+    <li>"Unlock &amp; continue" kost één download. Daarna zijn alle stems van dat nummer vrij.</li>
+    <li>Download ook het <b>volledige nummer</b> als WAV (via <b>Download .WAV</b> in het menu van de clip).</li>
+  </ol>
+  <div class="two">
+    <div><figure><img src="img/suno_studio_menu.jpg"><figcaption>Rechtsklik op de clip in Studio: Get Stems, Download .WAV, Get MIDI</figcaption></figure>
+         <figure><img src="img/suno_download.jpg" style="max-width:70%"><figcaption>Download: vink WAV aan (hier staat MP3 nog aangevinkt) en laat "Follow tempo changes" staan</figcaption></figure></div>
+    <div><figure><img src="img/suno_stems.jpg" style="max-width:88%"><figcaption>Het stems-venster: kies de split-modus bovenaan, zet "Match project tempo" uit</figcaption></figure></div>
+  </div>
+  <div class="tip"><b>Belangrijkste ontdekking:</b> met het vinkje MIDI levert Suno noten voor álle sporen, ook voor de zang, en alle MIDI-bestanden delen dezelfde tempokaart. Daardoor passen alle partijen meteen op één maatraster. Dit is de beste basis voor de partituur.</div>
+</section>
+
+<!-- 4 KLANGIO -->
+<section class="page">
+  <div class="kicker">Hoofdstuk 4 · <span class="chip c-kla">Klangio</span></div>
+  <h2>Noten maken met Klangio</h2>
+  <div class="tip"><b>Sinds de MIDI-export van Suno is Klangio optioneel.</b> Gebruik het als tweede mening, of voor stukken waarvan je geen Suno-MIDI hebt (bv. een oude opname).</div><p>Klangio Transcription Studio (studio.klang.io) zet audio om naar noten. Het werkt het best met <b>één spoor per keer</b>. Gratis zie je de eerste 20 seconden; met Pro (ongeveer €20 per maand, maandelijks opzegbaar) het hele stuk en de downloads.</p>
+  <h3>Instellingen die we gebruikten (zangspoor)</h3>
+  <table>
+    <tr><th>Scherm</th><th>Keuze</th><th>Waarom</th></tr>
+    <tr><td class="k">Mode</td><td>Single-Instrument</td><td>Het spoor bevat maar één soort klank</td></tr>
+    <tr><td class="k">Instrument</td><td>Vocals (de microfoon)</td><td>"Soprano", "Alto" onderaan zijn saxofoons!</td></tr>
+    <tr><td class="k">Lyrics</td><td>Yes, taal Français</td><td>Taal opgeven = betere tekstherkenning</td></tr>
+    <tr><td class="k">Extra info</td><td>"I wish to add more options"</td><td>Dan kun je de toonsoort meegeven</td></tr>
+    <tr><td class="k">Musical key</td><td>B♭ major / G minor (voor dit stuk)</td><td>Claude bepaalt de toonsoort per stuk</td></tr>
+    <tr><td class="k">Time signature, Tempo</td><td>Detect</td><td>Bij een vrij tempo werkt raden beter dan een vast getal</td></tr>
+    <tr><td class="k">Quantization</td><td>Eighth</td><td>Grover raster = leesbaarder ritme</td></tr>
+    <tr><td class="k">Triplets</td><td>No</td><td>Anders verschijnen er valse triolen</td></tr>
+    <tr><td class="k">Voice type</td><td>Soprano (of Alto voor een lage stem)</td><td></td></tr>
+    <tr><td class="k">Title / Author</td><td>Titel van het stuk / Rebekka Rogiest</td><td>Komt op de partituur</td></tr>
+  </table>
+  <p>Voor piano: <b>Single-Instrument &gt; Piano</b>. Voor strijkers of meerdere stemmen in één spoor: <b>Ensemble &amp; Orchestral</b>. Gebruik niet <b>Arrangement</b>: dat maakt een vereenvoudigde speelversie.</p>
+  <div class="two">
+    <div><figure><img src="img/klangio_mode.jpg" style="max-width:78%"><figcaption>Kies de modus</figcaption></figure></div>
+    <div><figure><img src="img/klangio_settings.jpg" style="max-width:78%"><figcaption>De extra instellingen</figcaption></figure></div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="kicker">Hoofdstuk 4 · vervolg</div>
+  <h2>Wat Klangio oplevert</h2>
+  <figure><img src="img/klangio_result.jpg" style="max-width:92%"><figcaption>Eerste test: 20 seconden zangstem van <i>Ce qu'il reste entre nous</i></figcaption></figure>
+  <div class="two">
+    <div><h3>Goed</h3><ul><li>Leesbaar ritme</li><li>Tempowissel herkend (61 naar 78)</li><li>Franse tekst grotendeels juist</li><li>Akkoordsymbolen</li></ul></div>
+    <div><h3>Nog te verbeteren</h3><ul><li>Tekstfoutjes ("mon voix")</li><li>Enkele noten een octaaf te laag</li><li>Vreemde rust in maat 6</li></ul></div>
+  </div>
+  <h3>Na de transcriptie</h3>
+  <ol>
+    <li>Luister met <b>Synth sound</b> (wat er op papier staat) en wissel af met <b>Original sound</b>.</li>
+    <li>Klik <b>Download</b> en kies <b>MusicXML</b> én <b>MIDI</b>.</li>
+    <li>Herhaal voor elk spoor (zang, piano, ...). Geef de bestanden een duidelijke naam, bv. <code>zang.musicxml</code>, <code>piano.musicxml</code>.</li>
+  </ol>
+  <div class="tip">Klangio-bestanden verlopen na 30 dagen. Download meteen wat je nodig hebt.</div>
+</section>
+
+<!-- 5 CLAUDE -->
+<section class="page">
+  <div class="kicker">Hoofdstuk 5 · <span class="chip c-cla">Claude</span></div>
+  <h2>Wat Claude daarna doet</h2>
+  <p>Klangio levert de grondstof. Een partituur voor een ensemble vraagt nog zeven stappen:</p>
+  <table>
+    <tr><th>#</th><th>Stap</th><th>Waarom</th></tr>
+    <tr><td>1</td><td class="k">Eén maatraster</td><td>Klangio bepaalt per spoor zelf tempo en maten. Zonder gemeenschappelijk raster speelt het ensemble niet samen.</td></tr>
+    <tr><td>2</td><td class="k">Fouten verbeteren</td><td>Octaaffouten, vreemde rusten, de originele tekst in plaats van de geraden tekst.</td></tr>
+    <tr><td>3</td><td class="k">Zangpartijen</td><td>Uit één of twee gezongen lijnen drie zingbare partijen maken (S1, S2, A), binnen het bereik.</td></tr>
+    <tr><td>4</td><td class="k">Arrangeren</td><td>Wat piano en synth spelen verdelen over piano, harp, viool, cello en percussie. Harppedalen uitschrijven.</td></tr>
+    <tr><td>5</td><td class="k">Controle</td><td>Een script controleert bereik per stem, maatlengtes en onspeelbare passages.</td></tr>
+    <tr><td>6</td><td class="k">Uitschrijven</td><td>Volledige partituur, partijen per muzikant (PDF), MusicXML, playback, repetitie-MP3's.</td></tr>
+    <tr><td>7</td><td class="k">Herbruikbaar maken</td><td>Elk volgend stuk volgt dezelfde route, sneller.</td></tr>
+  </table>
+
+  <h3>Wat je aan Claude aanlevert (per stuk)</h3>
+  <ul class="check">
+    <li>Het volledige nummer als WAV</li>
+    <li>De stems als WAV (zip)</li>
+    <li>De MIDI-bestanden uit Suno (en eventueel Klangio-bestanden)</li>
+    <li>De definitieve tekst (als tekstbestand of gewoon geplakt)</li>
+    <li>De gewenste bezetting (bv. 6 zangeressen + piano, harp, viool, cello, percussie)</li>
+    <li>Eventuele wensen: welk instrument draagt welke melodie, waar mag het eenvoudiger</li>
+  </ul>
+  <div class="warn"><b>Wat AI niet kan:</b> echt luisteren. Claude meet en vergelijkt audio, maar kan niet oordelen of iets mooi of zingbaar klinkt. Daarom blijven stap 5 en 6 uit het schema mensenwerk.</div>
+</section>
+
+<!-- 6 CHECK -->
+<section class="page">
+  <div class="kicker">Hoofdstuk 6 · <span class="chip c-reb">Rebekka</span> <span class="chip c-mus">Musici</span></div>
+  <h2>Controleren, repeteren, uitvoeren</h2>
+  <h3>Beluisteren</h3>
+  <p>Leg de playback van de partituur naast je originele Suno-nummer, deel per deel. Noteer per maatnummer wat niet klopt ("maat 23: melodie te laag", "maat 40: harp te druk") en geef dat terug aan Claude.</p>
+  <h3>Nalezen</h3>
+  <p>Laat een musicus die niet aan de partituur werkte alles nalezen voor het naar de muzikanten gaat. Voor een concert in een grotere zaal is dat geen luxe. Ter indicatie: een professionele kopiist rekent per pagina; voor een stuk van deze omvang reken op enkele honderden tot ongeveer €1.500. Vraag lokaal een offerte.</p>
+  <h3>Afwerken</h3>
+  <p>Kleine visuele aanpassingen (een notenbalk verschuiven, een bladomslag) doe je het makkelijkst in <b>MuseScore 4</b> (gratis) met het MusicXML-bestand. <b>Dorico</b> is het professionele alternatief.</p>
+  <h3>Repeteren</h3>
+  <p>Elke zangeres krijgt een MP3 van het hele stuk waarin haar eigen stem luider klinkt. Dat is het formaat dat koeruitgevers ook gebruiken, en het komt rechtstreeks uit de partituur.</p>
+  <h3>Een ander ensemble?</h3>
+  <p>De partituur is een "master". Een koor van 35 zingt dezelfde drie stemmen met meer mensen per stem: dat is bijna gratis. A cappella of een groter orkest is herarrangeren, telkens vanuit dezelfde master.</p>
+</section>
+
+<!-- 7 RIGHTS -->
+<section class="page">
+  <div class="kicker">Hoofdstuk 7</div>
+  <h2>Rechten: Suno en SABAM</h2>
+  <ul>
+    <li><b>Suno.</b> Met een betalend abonnement (Pro of Premier) mag je de stukken commercieel gebruiken, ook in een concert. Suno garandeert niet dat er auteursrecht op de output rust. Maak en download stukken dus altijd terwijl je een betalend abonnement hebt.</li>
+    <li><b>SABAM.</b> Registreer het werk in MyWorx en geef aan hoe AI gebruikt werd. Er zijn drie categorieën:
+      <ul>
+        <li><b>AI als assistent:</b> volledig beschermd.</li>
+        <li><b>AI als component:</b> alleen het menselijke deel is beschermd.</li>
+        <li><b>Volledig door AI gemaakt:</b> niet beschermd.</li>
+      </ul>
+      Je eigen tekst, eigen melodieën en het arrangement zijn je menselijke inbreng. SABAM controleert niet zelf; de verantwoordelijkheid ligt bij de auteur. Bij twijfel over de juiste categorie: vraag het SABAM rechtstreeks.</li>
+    <li><b>Bewaar je bewijs:</b> prompts, eigen tekst, MIDI die je zelf ingaf, stems en downloaddata. Hoe meer eigen inbreng aantoonbaar is, hoe sterker je staat.</li>
+  </ul>
+  <p class="small">Dit is algemene informatie, geen juridisch advies. Regels rond AI en auteursrecht veranderen snel.</p>
+</section>
+
+<!-- 8 AI -->
+<section class="page">
+  <div class="kicker">Hoofdstuk 8</div>
+  <h2>Verder werken met AI (de zip)</h2>
+  <p>De zip bevat alles wat een AI nodig heeft om dit project op te pikken:</p>
+  <table>
+    <tr><th>Bestand</th><th>Wat</th></tr>
+    <tr><td class="k">00_LEES_MIJ_EERST.md</td><td>Korte uitleg voor jou</td></tr>
+    <tr><td class="k">01_AI_BRIEFING.md</td><td>De instructies voor de AI: doel, werkwijze, stand van zaken, wat ze moet vragen</td></tr>
+    <tr><td class="k">02_WERKNOTITIES.md</td><td>Alle beslissingen en instellingen van vandaag</td></tr>
+    <tr><td class="k">Handleiding PDF</td><td>Dit document</td></tr>
+    <tr><td class="k">project/</td><td>Analyse en status van <i>Ce qu'il reste entre nous</i></td></tr>
+    <tr><td class="k">scripts/</td><td>De Python-scripts die Claude gebruikte</td></tr>
+    <tr><td class="k">voorbeelden/</td><td>De eerste testresultaten (MIDI, proefblad)</td></tr>
+  </table>
+  <h3>Zo gebruik je het</h3>
+  <ol>
+    <li>Open een nieuw gesprek in Claude (claude.ai) of ChatGPT.</li>
+    <li>Sleep de zip in het gesprek, samen met de bestanden van je nieuwe stuk.</li>
+    <li>Typ: <i>"Lees eerst 01_AI_BRIEFING.md en help me verder met dit stuk."</i></li>
+  </ol>
+  <h3>Wat je mag verwachten</h3>
+  <ul>
+    <li><b>Claude</b> kan de scripts uitvoeren en het volledige werk doen (stap 4), mits de omgeving code toelaat. Het werkt het best in een Claude-omgeving waarin het software kan installeren.</li>
+    <li><b>ChatGPT</b> kan de handleiding lezen, vragen beantwoorden en je begeleiden in Suno en Klangio. De verwerking zelf (audio naar noten, partituur zetten) zal er waarschijnlijk niet lukken, omdat de nodige software daar meestal niet geïnstalleerd kan worden.</li>
+    <li>Lukt het niet: stuur de bestanden naar Olivier.</li>
+  </ul>
+</section>
+
+<!-- 9 CHEAT -->
+<section class="page">
+  <div class="kicker">Hoofdstuk 9</div>
+  <h2>Spiekbriefje</h2>
+  <div class="two">
+    <div>
+      <h3><span class="chip c-reb">Suno</span></h3>
+      <ul class="check">
+        <li>Betalend abonnement actief</li>
+        <li>Stuk in Studio, liefst met eigen MIDI</li>
+        <li>Get Stems &gt; Advanced split (Lead Vocal, Backing Vocals, Choir, Piano, Strings)</li>
+        <li>Match project tempo: uit</li>
+        <li>Download: WAV + MIDI + Follow tempo changes</li>
+        <li>Volledig nummer ook als WAV</li>
+        <li>Tekst en prompts bewaard</li>
+      </ul>
+    </div>
+    <div>
+      <h3><span class="chip c-kla">Klangio</span></h3>
+      <ul class="check">
+        <li>Eén spoor per keer</li>
+        <li>Single-Instrument &gt; Vocals / Piano</li>
+        <li>Lyrics: Yes, Français</li>
+        <li>Toonsoort opgeven</li>
+        <li>Tempo en maat: Detect</li>
+        <li>Quantization: Eighth, Triplets: No</li>
+        <li>Download MusicXML + MIDI (binnen 30 dagen)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="two">
+    <div>
+      <h3><span class="chip c-cla">Naar Claude</span></h3>
+      <ul class="check">
+        <li>WAV volledig + stems</li>
+        <li>Suno-MIDI per spoor</li>
+        <li>Definitieve tekst</li>
+        <li>Bezetting + wensen</li>
+      </ul>
+    </div>
+    <div>
+      <h3><span class="chip c-mus">Voor het concert</span></h3>
+      <ul class="check">
+        <li>Playback naast origineel beluisterd</li>
+        <li>Nagelezen door een musicus</li>
+        <li>Repetitie-MP3 per stem</li>
+        <li>Werk geregistreerd bij SABAM</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 10 STATUS -->
+<section class="page">
+  <div class="kicker">Hoofdstuk 10</div>
+  <h2>Waar <i>Ce qu'il reste entre nous</i> nu staat</h2>
+  <table>
+    <tr><th>Stap</th><th>Status</th></tr>
+    <tr><td class="k">Suno-abonnement</td><td>Premier betaald en actief sinds 13/10/2026 (bevestigd door Suno support). Toont de app nog "Upgrade", dan uit- en opnieuw inloggen.</td></tr>
+    <tr><td class="k">Stems (Pro, Auto split)</td><td>Gedownload: zang, backing vocals, gitaar, keyboard, percussie, synth, other</td></tr><tr><td class="k">Advanced split (Premier)</td><td>Lead Vocal, Backing Vocals, Choir, Piano, Strings: WAV + MIDI, gedeelde tempokaart</td></tr><tr><td class="k">Werkversie 0.1</td><td>Partituur, 8 partijen, playback, vergelijking en repetitietracks automatisch gemaakt; nog niet nagelezen</td></tr>
+    <tr><td class="k">Analyse</td><td>Bes groot / g klein; vrij tempo; zang 68 % van de klank, piano 14 %, synth 9 %, backing vocals 6,5 %</td></tr>
+    <tr><td class="k">Klangio-test</td><td>20 seconden zang: veelbelovend</td></tr>
+    <tr><td class="k">Volgende stap</td><td>Rebekka beluistert de vergelijking (links origineel, rechts partituur) en geeft per maat feedback; daarna arrangeerkeuzes voor harp, viool, cello en percussie</td></tr>
+  </table>
+  <h3>Bezetting voor de eerste uitvoering</h3>
+  <p>Elf op het podium: zes zangeressen (sopraan 1, sopraan 2, alt, elk dubbel bezet) en piano, harp, viool, cello, percussie.</p>
+  <h3>Opgelet bij dit stuk</h3>
+  <ul>
+    <li>De automatische split kent geen harp, viool of cello. Die klinken hier vooral als "synth" en "keyboard". De harp-, viool- en cellopartijen worden dus deels gearrangeerd, niet alleen overgeschreven.</li>
+    <li>Het origineel is "SSA &amp; piano": drie vrouwenstemmen met piano, plus een zachte strijkerslaag in het middenstuk. Harp en percussie zitten er niet in en worden er dus bij gearrangeerd; viool en cello deels.</li>
+  </ul>
+</section>
+
+</body>
+</html>

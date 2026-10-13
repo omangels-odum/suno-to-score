@@ -1,0 +1,9 @@
+Sopraan 1: 293 noten, bereik G3-F5, buiten bereik: 3 [(3, 'A#3'), (17, 'G3'), (56, 'A#3')]
+Sopraan 2: 105 noten, bereik G3-D5, buiten bereik: 1 [(24, 'G3')]
+Alt: 68 noten, bereik F3-C5, buiten bereik: 0 []
+Viool: 23 noten, bereik C4-D5, buiten bereik: 0 []
+Cello: 24 noten, bereik C2-A#3, buiten bereik: 0 []
+Tekst: 226 woorden uitgelijnd op de zang; 272 lettergrepen op een noot, 77 samengevoegd met de vorige; 31 noten uit de audio toegevoegd; woorden zonder noot: ['une', 'tremble', 'encore', 'encore', 'un', 'pose', 'laisse', 'puis', 'la', 'qui', 'une', 'comme']
+Maatsoorten: {'2/4': 3, '4/4': 56, '3/4': 1}
+Maten: 60; tempoaanduidingen: 3; percussie-accenten: 5; harpakkoorden: 59
+Melodie per frase: m2:S1, m6:A, m11:S1, m26:S1, m30:S1, m31:S1, m32:S1

@@ -1,0 +1,7 @@
+# audio en modellen niet in git (groot en/of auteursrechtelijk beschermd)
+*.wav
+*.mp3
+*.zip
+models/
+__pycache__/
+*.ly
