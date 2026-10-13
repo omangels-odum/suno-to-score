@@ -106,3 +106,8 @@ Wordt later uitgewerkt tot een handleiding + zip.
 - Verlies zit in de notatiestap: pianopartij v0.2 haalt 0,807 klankgelijkenis (Suno-MIDI 0,893). Oorzaken: akkoorden beperkt tot 4 noten per hand, duur afgekapt bij de volgende aanslag (aangehouden bas/pedaal verdwijnt). Oplossing v0.3: aangehouden noten als tweede stem, geen akkoordsnoei, pedaalaanduiding.
 - Finale importeert MusicXML tot versie 3.1; music21 schrijft 4.0. Voor Dirk: exporteren als 3.1 en eerst een fragment van 8 maten laten testen. Finale: 4 lagen x 2 stemmen.
 - Voor later: MIDI2ScoreTransformer (handen/stemmen, Python 3.11, licentie onduidelijk).
+
+## Feedback Rebekka op v0.2 en stopzetting (13/10/2026, 22:09)
+- "Tis nog niet beter. Noten kloppen niet en vaak maar halve woorden. Maar ook hier: weer een mooie start. Laat het los, 't is ok zo."
+- Beslissing: project gepauzeerd na v0.2. v0.3 (pianopartij zonder afgekapte noten + MusicXML 3.1 voor Finale) niet gebouwd.
+- Les: objectieve metingen (maatstrepen 8% -> 51%, tekst 226/226 uitgelijnd) vertaalden zich niet in een hoorbaar beter resultaat voor de componist. Bij een vrij gezongen stuk ligt het plafond van volautomatisch werken laag; de realistische route is een vertrekpunt voor een musicus (Dirk, Finale).
