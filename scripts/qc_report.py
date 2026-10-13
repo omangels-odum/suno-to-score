@@ -109,7 +109,7 @@ h1{{color:#5b2a6e;font-size:22px;margin:0 0 4px}} p{{line-height:1.5}} .k{{displ
 table{{border-collapse:collapse;width:100%;font-size:14px}} td,th{{border-bottom:1px solid #e3e0ea;padding:6px;text-align:left;vertical-align:top}}
 td.b{{font-weight:700;font-size:16px}} audio{{width:220px;height:32px}}
 </style></head><body>
-<h1>Ce qu'il reste entre nous: maten om na te kijken (werkversie 0.2)</h1>
+<h1>Ce qu'il reste entre nous: maten om na te kijken (werkversie 0.3)</h1>
 <p>Automatische controle. De computer vergelijkt per maat de partituur met de noten van Suno en met de klank van het origineel. Hij kan niet echt luisteren: dit is een lijst van <b>vermoedelijke</b> problemen, met de ergste bovenaan. Elk fragment speelt eerst het origineel en na een korte stilte de partituur.</p>
 <div class="k"><div><b>{summary['maten']}</b>maten</div><div><b>{summary['zang']}%</b>zangnoten gelijk aan Suno</div><div><b>{summary['piano']}%</b>pianonoten gelijk aan Suno</div><div><b>{summary['nakijken']}</b>maten gemarkeerd</div></div>
 <table><tr><th>Maat</th><th>Tijd</th><th>Waarom</th><th>Origineel, dan partituur</th></tr>{trs}</table>

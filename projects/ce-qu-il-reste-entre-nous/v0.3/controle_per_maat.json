@@ -1,0 +1,111 @@
+{
+ "summary": {
+  "maten": 60,
+  "zang": 78,
+  "piano": 72,
+  "nakijken": 16
+ },
+ "ranked": [
+  [
+   1,
+   [
+    "klinkt anders dan het origineel (klankvergelijking)",
+    "afwijkende maatsoort 3/4: nakijken of de maatstreep klopt"
+   ]
+  ],
+  [
+   44,
+   [
+    "piano wijkt af van Suno (30% overeenkomst)",
+    "afwijkende maatsoort 2/4: nakijken of de maatstreep klopt"
+   ]
+  ],
+  [
+   5,
+   [
+    "klinkt anders dan het origineel (klankvergelijking)"
+   ]
+  ],
+  [
+   59,
+   [
+    "klinkt anders dan het origineel (klankvergelijking)"
+   ]
+  ],
+  [
+   16,
+   [
+    "zang wijkt af van Suno (44% overeenkomst)",
+    "klinkt anders dan het origineel (klankvergelijking)"
+   ]
+  ],
+  [
+   49,
+   [
+    "zang wijkt af van Suno (46% overeenkomst)",
+    "afwijkende maatsoort 2/4: nakijken of de maatstreep klopt"
+   ]
+  ],
+  [
+   2,
+   [
+    "klinkt anders dan het origineel (klankvergelijking)"
+   ]
+  ],
+  [
+   55,
+   [
+    "piano wijkt af van Suno (42% overeenkomst)",
+    "klinkt anders dan het origineel (klankvergelijking)"
+   ]
+  ],
+  [
+   25,
+   [
+    "afwijkende maatsoort 2/4: nakijken of de maatstreep klopt"
+   ]
+  ],
+  [
+   57,
+   [
+    "klinkt anders dan het origineel (klankvergelijking)"
+   ]
+  ],
+  [
+   17,
+   [
+    "Sopraan 1: G3 buiten comfortabel bereik"
+   ]
+  ],
+  [
+   4,
+   [
+    "zang wijkt af van Suno (0% overeenkomst)"
+   ]
+  ],
+  [
+   24,
+   [
+    "Sopraan 2: G3 buiten comfortabel bereik"
+   ]
+  ],
+  [
+   60,
+   [
+    "piano wijkt af van Suno (0% overeenkomst)"
+   ]
+  ],
+  [
+   56,
+   [
+    "Sopraan 1: A#3 buiten comfortabel bereik"
+   ]
+  ],
+  [
+   3,
+   [
+    "Sopraan 1: A#3 buiten comfortabel bereik"
+   ]
+  ]
+ ]
+}

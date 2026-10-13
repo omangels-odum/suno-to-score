@@ -1,0 +1,29 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Controle per maat</title><style>
+body{font-family:Inter,system-ui,sans-serif;margin:0;padding:16px;color:#1d1b26;background:#fff;max-width:900px}
+h1{color:#5b2a6e;font-size:22px;margin:0 0 4px} p{line-height:1.5} .k{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.k div{background:#f6f4f9;border-radius:8px;padding:8px 12px} .k b{display:block;font-size:20px;color:#5b2a6e}
+table{border-collapse:collapse;width:100%;font-size:14px} td,th{border-bottom:1px solid #e3e0ea;padding:6px;text-align:left;vertical-align:top}
+td.b{font-weight:700;font-size:16px} audio{width:220px;height:32px}
+</style></head><body>
+<h1>Ce qu'il reste entre nous: maten om na te kijken (werkversie 0.3)</h1>
+<p>Automatische controle. De computer vergelijkt per maat de partituur met de noten van Suno en met de klank van het origineel. Hij kan niet echt luisteren: dit is een lijst van <b>vermoedelijke</b> problemen, met de ergste bovenaan. Elk fragment speelt eerst het origineel en na een korte stilte de partituur.</p>
+<div class="k"><div><b>60</b>maten</div><div><b>78%</b>zangnoten gelijk aan Suno</div><div><b>72%</b>pianonoten gelijk aan Suno</div><div><b>16</b>maten gemarkeerd</div></div>
+<table><tr><th>Maat</th><th>Tijd</th><th>Waarom</th><th>Origineel, dan partituur</th></tr><tr><td class='b'>1</td><td>0:00</td><td>klinkt anders dan het origineel (klankvergelijking)<br>afwijkende maatsoort 3/4: nakijken of de maatstreep klopt</td><td><audio controls preload='none' src='fragmenten/maat_01.mp3'></audio></td></tr>
+<tr><td class='b'>44</td><td>2:32</td><td>piano wijkt af van Suno (30% overeenkomst)<br>afwijkende maatsoort 2/4: nakijken of de maatstreep klopt</td><td><audio controls preload='none' src='fragmenten/maat_44.mp3'></audio></td></tr>
+<tr><td class='b'>5</td><td>0:14</td><td>klinkt anders dan het origineel (klankvergelijking)</td><td><audio controls preload='none' src='fragmenten/maat_05.mp3'></audio></td></tr>
+<tr><td class='b'>59</td><td>3:24</td><td>klinkt anders dan het origineel (klankvergelijking)</td><td><audio controls preload='none' src='fragmenten/maat_59.mp3'></audio></td></tr>
+<tr><td class='b'>16</td><td>0:53</td><td>zang wijkt af van Suno (44% overeenkomst)<br>klinkt anders dan het origineel (klankvergelijking)</td><td><audio controls preload='none' src='fragmenten/maat_16.mp3'></audio></td></tr>
+<tr><td class='b'>49</td><td>2:48</td><td>zang wijkt af van Suno (46% overeenkomst)<br>afwijkende maatsoort 2/4: nakijken of de maatstreep klopt</td><td><audio controls preload='none' src='fragmenten/maat_49.mp3'></audio></td></tr>
+<tr><td class='b'>2</td><td>0:03</td><td>klinkt anders dan het origineel (klankvergelijking)</td><td><audio controls preload='none' src='fragmenten/maat_02.mp3'></audio></td></tr>
+<tr><td class='b'>55</td><td>3:08</td><td>piano wijkt af van Suno (42% overeenkomst)<br>klinkt anders dan het origineel (klankvergelijking)</td><td><audio controls preload='none' src='fragmenten/maat_55.mp3'></audio></td></tr>
+<tr><td class='b'>25</td><td>1:25</td><td>afwijkende maatsoort 2/4: nakijken of de maatstreep klopt</td><td><audio controls preload='none' src='fragmenten/maat_25.mp3'></audio></td></tr>
+<tr><td class='b'>57</td><td>3:16</td><td>klinkt anders dan het origineel (klankvergelijking)</td><td><audio controls preload='none' src='fragmenten/maat_57.mp3'></audio></td></tr>
+<tr><td class='b'>17</td><td>0:57</td><td>Sopraan 1: G3 buiten comfortabel bereik</td><td><audio controls preload='none' src='fragmenten/maat_17.mp3'></audio></td></tr>
+<tr><td class='b'>4</td><td>0:10</td><td>zang wijkt af van Suno (0% overeenkomst)</td><td><audio controls preload='none' src='fragmenten/maat_04.mp3'></audio></td></tr>
+<tr><td class='b'>24</td><td>1:21</td><td>Sopraan 2: G3 buiten comfortabel bereik</td><td><audio controls preload='none' src='fragmenten/maat_24.mp3'></audio></td></tr>
+<tr><td class='b'>60</td><td>3:27</td><td>piano wijkt af van Suno (0% overeenkomst)</td><td><audio controls preload='none' src='fragmenten/maat_60.mp3'></audio></td></tr>
+<tr><td class='b'>56</td><td>3:12</td><td>Sopraan 1: A#3 buiten comfortabel bereik</td><td><audio controls preload='none' src='fragmenten/maat_56.mp3'></audio></td></tr></table>
+<p>Ook gemarkeerd, minder dringend: maat 3.</p>
+<p style="color:#5d5a6b;font-size:13px">"Gelijk aan Suno" meet of noten op ongeveer dezelfde plaats en toonhoogte (los van octaaf) staan als in Suno's eigen MIDI. Suno's MIDI is zelf ook een schatting, dus 100% is geen garantie.</p>
+</body></html>

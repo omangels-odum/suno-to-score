@@ -111,3 +111,11 @@ Wordt later uitgewerkt tot een handleiding + zip.
 - "Tis nog niet beter. Noten kloppen niet en vaak maar halve woorden. Maar ook hier: weer een mooie start. Laat het los, 't is ok zo."
 - Beslissing: project gepauzeerd na v0.2. v0.3 (pianopartij zonder afgekapte noten + MusicXML 3.1 voor Finale) niet gebouwd.
 - Les: objectieve metingen (maatstrepen 8% -> 51%, tekst 226/226 uitgelijnd) vertaalden zich niet in een hoorbaar beter resultaat voor de componist. Bij een vrij gezongen stuk ligt het plafond van volautomatisch werken laag; de realistische route is een vertrekpunt voor een musicus (Dirk, Finale).
+
+## Werkversie 0.3 alsnog gebouwd (op vraag van Olivier), daarna pauze (13/10/2026)
+- Piano: noten houden echte duur, geen akkoordsnoei, overlappingen als stemmen per maat (max. ~4), "con Ped." Klankgelijkenis pianopartij 0,808 -> 0,875 (Suno-MIDI 0,893).
+- Tekst: woorden zonder eigen noot worden bij de vorige noot gezet (34 woorden) i.p.v. weg te vallen.
+- MusicXML 3.1 voor Finale; piano als één partij met twee notenbalken.
+- Gravure nu met Verovio (engrave_verovio.py): musicxml2ly gaf foute maatnummering bij meerdere stemmen.
+- Valkuil music21: makeVoices over een hele partij negeert maatsoortwissels; per maat doen, en maatsoorten na makeMeasures opnieuw zetten.
+- Zangnoten zelf niet verbeterd (bron blijft Suno-MIDI); dat blijft werk voor een musicus.
