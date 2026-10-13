@@ -100,3 +100,9 @@ Wordt later uitgewerkt tot een handleiding + zip.
 - Controlerapport per maat: zang 78% en piano 74% gelijk aan Suno-MIDI; 18 maten gemarkeerd.
 - Dirk (musicus die verder werkt) gebruikt Finale: MusicXML aanleveren (Finale opent geen MuseScore-bestanden).
 - Rebekka over v0.1: 30-40% juist, maar een vertrekpunt voor Dirk.
+
+## Derde onderzoeksronde: piano en Finale (13/10/2026)
+- Getest: Transkun V2 (beste open-source pianotranscriptie volgens onderzoek, MAESTRO noot-F1 98%) op het Suno-pianospoor. Resultaat op DIT spoor slechter dan Suno's eigen MIDI: klankgelijkenis 0,868 vs 0,893, aanslagen F1 0,71 vs 0,77. Conclusie: Suno-MIDI blijft de bron voor piano.
+- Verlies zit in de notatiestap: pianopartij v0.2 haalt 0,807 klankgelijkenis (Suno-MIDI 0,893). Oorzaken: akkoorden beperkt tot 4 noten per hand, duur afgekapt bij de volgende aanslag (aangehouden bas/pedaal verdwijnt). Oplossing v0.3: aangehouden noten als tweede stem, geen akkoordsnoei, pedaalaanduiding.
+- Finale importeert MusicXML tot versie 3.1; music21 schrijft 4.0. Voor Dirk: exporteren als 3.1 en eerst een fragment van 8 maten laten testen. Finale: 4 lagen x 2 stemmen.
+- Voor later: MIDI2ScoreTransformer (handen/stemmen, Python 3.11, licentie onduidelijk).
